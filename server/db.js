@@ -3,7 +3,7 @@ const colors = require("colors");
 
 const dbConnect = async () => {
   try {
-    const connectionString = await mongoose.connect(process.env.MONGODB_URI, {
+    const connectionString = await mongoose.connect("mongodb://127.0.0.1:27017/WhatsApp", {
       useUnifiedTopology: true,
       useNewUrlParser: true,
     });
