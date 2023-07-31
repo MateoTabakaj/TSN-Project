@@ -26,23 +26,20 @@
 
 ### Guest User
 
-## ![Gif](./screenshots/4.gif)
+## ![ScreenShot](./screenshots/1.png)
 
-### User Signup
-
-## ![Gif](./screenshots/5.gif)
 
 ### Search User
 
-## ![Gif](./screenshots/6.gif)
+## ![ScreenShot](./screenshots/7.png)
 
 ### View Profile
 
-## ![Gif](./screenshots/7.gif)
+## ![ScreenShot](./screenshots/2.png)
 
 ### Guest User
 
-## ![Gif](./screenshots/8.png)
+## ![ScreenShot](./screenshots/8.png)
 
 ### Search User
 
