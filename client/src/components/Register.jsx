@@ -47,7 +47,7 @@ const Register = () => {
       })
         .then((res) => res.json())
         .then((data) => {
-          setUserData({ ...userData, ["pic"]: data.url.toString() });
+          setUserData({ ...userData, [pic]: data.url.toString() });
           setUploadingImage(false);
         })
         .catch((err) => {
@@ -77,7 +77,7 @@ const Register = () => {
       };
       console.log(name, email, password, pic);
       const { data } = await axios.post(
-        "/api/users",
+        "http://localhost:5000/api/users",
         { name, email, password, pic },
         config
       );
@@ -91,9 +91,11 @@ const Register = () => {
       return;
     }
   };
-  if (isLoading) {
-    return <Loader />;
-  }
+  // if (isLoading) {
+
+  //   return (
+  //   <Loader />);
+  // }
   return (
     <VStack spacing="30px">
       <FormControl id="name" isRequired>
@@ -104,6 +106,16 @@ const Register = () => {
           value={name}
           size="md"
           placeholder="eg. John Doe"
+        />
+      </FormControl>
+      <FormControl id="pic">
+        <FormLabel mb="0px">Upload Profile Picture</FormLabel>
+        <Input
+          type="file"
+          onChange={(e) => postDetails(e.target.files[0])}
+          accept="image/*"
+          name="pic"
+          size="xl"
         />
       </FormControl>
       <FormControl id="email" isRequired>
@@ -151,16 +163,6 @@ const Register = () => {
             </Button>
           </InputRightElement>
         </InputGroup>
-      </FormControl>
-      <FormControl id="pic">
-        <FormLabel mb="0px">Upload Profile Picture</FormLabel>
-        <Input
-          type="file"
-          onChange={(e) => postDetails(e.target.files[0])}
-          accept="image/*"
-          name="pic"
-          size="xl"
-        />
       </FormControl>
       <Button
         bg={"#1d1931"}

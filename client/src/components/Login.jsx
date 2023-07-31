@@ -45,9 +45,9 @@ const Login = () => {
         },
       };
       const { data } = await axios.post(
-        "/api/users/login",
+        "http://localhost:5000/api/users/login",
         { email, password },
-        config
+        {withCredintials:true}
       );
       toast.success("User Logged In successfully");
       localStorage.setItem("deLinkUser", JSON.stringify(data));
@@ -87,7 +87,7 @@ const Login = () => {
               h="1.75rem"
               size="xs"
               onClick={handleClick}
-              isDisabled={email === "guest@deLink.com"}
+              isDisabled={email === "guest@tsn.com"}
             >
               {show ? "Hide" : "Show"}
             </Button>
@@ -113,7 +113,7 @@ const Login = () => {
         style={{ marginTop: "10px" }}
         onClick={() => {
           setUserData({
-            email: "guest@deLink.com",
+            email: "guest@tsn.com",
             password: "thisISTHE1234PAssGU3st",
           });
         }}

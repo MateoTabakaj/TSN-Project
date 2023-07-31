@@ -2,9 +2,7 @@ const Chat = require("../models/chat");
 const User = require("../models/user");
 const asyncHandler = require("express-async-handler");
 
-// @desc		Access or initiate a chat between two persons
-// @route		POST /api/chats
-// @access		private
+
 const accessChat = asyncHandler(async (req, res) => {
   const { userId } = req.body;
   if (!userId) {
@@ -50,9 +48,6 @@ const accessChat = asyncHandler(async (req, res) => {
   }
 });
 
-// @desc		Get all the chats for one user
-// @route		GET /api/chats
-// @access		private
 const fetchChats = asyncHandler(async (req, res) => {
   try {
     var allChats = await Chat.find({
@@ -75,9 +70,6 @@ const fetchChats = asyncHandler(async (req, res) => {
   }
 });
 
-// @desc		Create a new Chat room
-// @route		POST /api/chats/group
-// @access		Private
 const createGroupChat = asyncHandler(async (req, res) => {
   if (!req.body.users || !req.body.name) {
     return res.status(400).send({
@@ -111,9 +103,6 @@ const createGroupChat = asyncHandler(async (req, res) => {
   }
 });
 
-// @desc		Rename the chat
-// @route		PUT /api/chats/groupRename
-// @access		Private
 const renameGroup = asyncHandler(async (req, res) => {
   const { chatId, chatName } = req.body;
   if (!chatName) {
@@ -140,9 +129,6 @@ const renameGroup = asyncHandler(async (req, res) => {
   }
 });
 
-// @desc		add a new member to the group
-// @route		PUT /api/chats/groupAdd
-// @access		Private
 const addToGroup = asyncHandler(async (req, res) => {
   const { chatId, userId } = req.body;
   try {
@@ -169,9 +155,6 @@ const addToGroup = asyncHandler(async (req, res) => {
   }
 });
 
-// @desc		add a new member to the group
-// @route		PUT /api/chats/groupAdd
-// @access		Private
 const removeFromGroup = asyncHandler(async (req, res) => {
   const { chatId, userId } = req.body;
   try {

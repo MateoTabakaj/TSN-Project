@@ -60,7 +60,7 @@ const SideDrawer = () => {
           Authorization: `Bearer ${user.token}`,
         },
       };
-      const { data } = await axios.get(`/api/users?search=${search}`, config);
+      const { data } = await axios.get(`http://localhost:5000/api/users?search=${search}`, config);
       setSearchResult(data.users);
       setLoading(false);
     } catch (err) {
@@ -79,7 +79,7 @@ const SideDrawer = () => {
           Authorization: `Bearer ${user.token}`,
         },
       };
-      const { data } = await axios.post(`/api/chats`, { userId }, config);
+      const { data } = await axios.post(`http://localhost:5000/api/chats`, { userId }, config);
       if (!chats.find((item) => item._id === data._id))
         setChats([data, ...chats]);
 
@@ -100,7 +100,7 @@ const SideDrawer = () => {
           Authorization: `Bearer ${user.token}`,
         },
       };
-      await axios.delete(`/api/notification/${id}`, config);
+      await axios.delete(`http://localhost:5000/api/notification/${id}`, config);
     } catch (err) {
       toast.error(err);
     }
@@ -112,7 +112,7 @@ const SideDrawer = () => {
           Authorization: `Bearer ${user.token}`,
         },
       };
-      const { data } = await axios.get("/api/notification", config);
+      const { data } = await axios.get("http://localhost:5000/api/notification", config);
       setNotification(data.map((item) => item.notificationId));
     } catch (err) {
       toast.error(err);
@@ -146,7 +146,7 @@ const SideDrawer = () => {
           className="brand"
           color="rgba(255, 255, 255, 0.685)"
         >
-          The Social Network
+         <a href="/chats"> The Social Network</a>
         </Text>
         <div style={{ display: "flex" }}>
           <Menu>

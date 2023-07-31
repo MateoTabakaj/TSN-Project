@@ -1,5 +1,6 @@
 const express = require("express");
 const colors = require("colors");
+const cors = require('cors');
 const dbConnect = require("./db.js");
 require("dotenv").config();
 const { errorHandler, routeNotFound } = require("./middleware/errorMiddleware");
@@ -9,9 +10,12 @@ const messageRoutes = require("./routes/messageRoutes");
 const notificationRoutes = require("./routes/notificationRoutes");
 const path = require("path");
 
+
+
 dbConnect();
 const app = express();
 app.use(express.json());
+app.use(cors({ credentials: true, origin: 'http://localhost:3000' }));
 
 // Main routes
 app.use("/api/users", userRoutes);
@@ -46,7 +50,7 @@ const server = app.listen(process.env.PORT || 5000, () => {
   console.log(
     colors.brightMagenta(`\nServer is UP on PORT ${process.env.SERVER_PORT}`)
   );
-  console.log(`Visit  ` + colors.underline.blue(`localhost:${5000}`));
+  console.log(`Visit  ` + colors.underline.blue(`http://localhost:${5000}`));
 });
 
 const io = require("socket.io")(server, {

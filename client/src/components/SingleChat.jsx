@@ -18,7 +18,9 @@ import axios from "axios";
 import ScrollableChat from "./ScrollableChat";
 // for socket.io
 import io from "socket.io-client";
-var socket, selectedChatCompare;
+const socket = io(); // Initialize the socket object
+
+var  selectedChatCompare;
 
 const SingleChat = ({ fetchAgain, setFetchAgain }) => {
   const { user, selectedChat, setSelectedChat, notification, setNotification } =
@@ -40,7 +42,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
         },
       };
       const { data } = await axios.get(
-        `/api/message/${selectedChat._id}`,
+        `http://localhost:5000/api/message/${selectedChat._id}`,
         config
       );
       setMessages(data);
@@ -65,7 +67,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
         };
         setNewMessage("");
         const { data } = await axios.post(
-          "/api/message",
+          "http://localhost:5000/api/message",
           {
             chatId: selectedChat._id,
             content: newMessage,
@@ -91,7 +93,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
         },
       };
       await axios.post(
-        "/api/notification",
+        "http://localhost:5000/api/notification",
         {
           notification: notification[0].chatId.latestMessage,
         },
